@@ -1,0 +1,6 @@
+[submodule "docker/tg-mqtt-stresser"]
+	path = docker/tg-mqtt-stresser
+	url = https://github.com/inovex/mqtt-stresser
+[submodule "docker/tg-emqtt-bench"]
+	path = docker/tg-emqtt-bench
+	url = https://github.com/emqx/emqtt-bench

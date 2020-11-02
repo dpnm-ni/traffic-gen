@@ -1,4 +1,4 @@
-IMAGES ?= tg-nginx tg-srs-bench
+IMAGES ?= tg-nginx tg-srs-bench tg-mqtt-stresser tg-emqtt-bench
 REPO ?= dpnm
 
 build:
