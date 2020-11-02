@@ -34,7 +34,7 @@ docker run -it --init --rm --network=host --name=tg-mqtt-stresser dpnm/tg-mqtt-s
 
 ## Note and references
 - Bulk traffic: iperf to iperf
-- VoD and Live Streaming traffic: srs-bench to nginx+rtmp module ([guide](https://docs.peer5.com/guides/setting-up-hls-live-streaming-server-using-nginx/)), nginx [rtmp module](://github.com/sergey-dryabzhinsky/nginx-rtmp-module) and srs-bench as client ([guide](https://hardelm.github.io/2017/07/11/srs-bench%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8))
+- VoD and Live Streaming traffic: srs-bench to nginx+rtmp module ([guide](https://docs.peer5.com/guides/setting-up-hls-live-streaming-server-using-nginx/)), nginx [rtmp module](https://github.com/sergey-dryabzhinsky/nginx-rtmp-module) and [srs-bench](https://github.com/ossrs/srs-bench) as client ([guide](https://hardelm.github.io/2017/07/11/srs-bench%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8))
 - IoT data: [mqtt-stresser](https://github.com/inovex/mqtt-stresser) to [mosquitto](https://github.com/eclipse/mosquitto)
 - VoIP traffic: Use [callgen323](https://github.com/willamowius/callgen323)
 
