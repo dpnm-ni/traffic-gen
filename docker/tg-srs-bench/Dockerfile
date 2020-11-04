@@ -7,7 +7,7 @@ RUN mkdir /mp4s && \
 RUN ffmpeg -i /bbb.mp4 -c:v libx264 -crf 19 /bbb.flv
 
 
-FROM debian:stretch-slim
+FROM debian:stretch-slim AS compiler
 
 # Install dependencies
 RUN apt-get update && \
@@ -19,11 +19,13 @@ RUN cd /srs-bench && \
     ./configure && \
     make
 
-RUN echo 'alias rtmp_play="./srs-bench/objs/sb_rtmp_load_fast"' >> ~/.bashrc
-RUN echo 'alias rtmp_publish="./srs-bench/objs/sb_rtmp_publish -i /mp4s/bbb.mp4"' >> ~/.bashrc
+
+FROM debian:stretch-slim
 
 RUN mkdir /videos
+RUN mkdir -p /srs-bench/objs
 COPY --from=builder /bbb.flv /videos/
+COPY --from=compiler /srs-bench/objs /srs-bench/objs
 
 ADD rootfs/ /
 RUN chmod a+x /rtmp_play.sh
