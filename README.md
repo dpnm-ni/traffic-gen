@@ -6,6 +6,7 @@ Firstly, user should have a `client` and a `server` with docker installed. To in
 ```bash
 sh -c "$(wget -O- https://get.docker.com)"
 ```
+User does not need to clone this repo, just run the bellow command(s) depend on the type of traffic needed.
 ### Web traffic
 [wrk2](https://github.com/giltene/wrk2) as the web client and nginx as web server
 ```bash
