@@ -1,5 +1,5 @@
 # traffic-gen
-Generate various type of traffic (bulk, VOD, live streaming, IoT, etc.)
+Generate various type of traffic (VOD, live streaming, IoT, video call, etc.)
 
 ## Run
 Firstly, user should have a `client` and a `server` with docker installed. To install docker:
@@ -52,7 +52,28 @@ docker run -it --init --rm --network=host --name=tg-emqtt-bench dpnm/tg-emqtt-be
 # for help, check emqtt-bench repo or run:
 docker run dpnm/tg-emqtt-bench pub --help
 ```
+### VoIP/Video call traffic
+iperf3 can be used to emulate VoIP/Video call traffic ([guide](http://wiki.innovaphone.com/index.php?title=Howto:Network_VoIP_Readiness_Test)). Bandwidth is set to 2 Mbps to emulate HD video call. Packet size is set to 1200 as [ref](https://stackoverflow.com/questions/47635545/why-webrtc-chose-rtp-max-packet-size-to-1200-bytes#:~:text=By%20studying%20WebRTC%20sources%20I,.cc%2C%20as%20kVideoMtu%20variable)
+```bash
+# Server
+docker run -it --init --rm --network=host --name=tg-iperf3-server dpnm/tg-iperf3 -s
 
+# Client to emulate "call" to server
+docker run -it --init --rm --network=host --name=tg-iperf3-client dpnm/tg-iperf3 -c <SERVER_IP> -u --bidir -S 184 -l 1200 -b 2M -t <DURATION> -P <NUM_CONNECTIONS>
+# for help, check iperf repo or run:
+docker run dpnm/tg-iperf --help
+```
+### Bulk traffic
+iperf3 can be used to emulate large volume of generic TCP/UDP traffic
+```bash
+# Server
+docker run -it --init --rm --network=host --name=tg-iperf3-server dpnm/tg-iperf3 -s
+
+# Client
+docker run -it --init --rm --network=host --name=tg-iperf3-client dpnm/tg-iperf3 -c <SERVER_IP> -t <DURATION>
+# for help, check iperf repo or run:
+docker run dpnm/tg-iperf --help
+```
 ## References
 - VoD and Live Streaming traffic [setup guide](https://docs.peer5.com/guides/setting-up-hls-live-streaming-server-using-nginx/) and [srs-bench guide](https://hardelm.github.io/2017/07/11/srs-bench%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8)
 
