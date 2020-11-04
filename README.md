@@ -6,6 +6,16 @@ Firstly, user should have a `client` and a `server` with docker installed. To in
 ```bash
 sh -c "$(wget -O- https://get.docker.com)"
 ```
+### Web traffic
+
+```bash
+# Web Server
+docker run -it --init --rm --network=host --name=tg-nginx dpnm/tg-nginx
+
+# wrk client to send request to web server
+docker run -it --init --rm --network=host --name=tg-wrk2 dpnm/tg-wrk2 -c <NUM_CONNECTIONS> -R <REQUEST_PER_SEC> -d <DURATION> http://<SERVER_IP>:8080
+```
+
 ### VoD traffic
 
 ```bash

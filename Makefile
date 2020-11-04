@@ -1,4 +1,4 @@
-IMAGES ?= tg-nginx tg-srs-bench tg-mqtt-stresser tg-emqtt-bench tg-callgen
+IMAGES ?= tg-nginx tg-srs-bench tg-mqtt-stresser tg-emqtt-bench tg-callgen tg-wrk2
 REPO ?= dpnm
 
 build:
