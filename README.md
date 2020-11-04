@@ -29,13 +29,13 @@ docker run -it --init --rm --network=host --name=tg-srs-bench dpnm/tg-srs-bench 
 docker run -it --init --rm --network=host --name=tg-mosquitto eclipse-mosquitto
 
 # Client to send data to MQTT server
-docker run -it --init --rm --network=host --name=tg-mqtt-stresser dpnm/tg-mqtt-stresser -broker tcp://<SERVER_IP>:1883 -num-clients 4 -num-messages 15000
+docker run -it --init --rm --network=host --name=tg-emqtt-bench dpnm/tg-emqtt-bench pub -I 0.1 -t bench/%c -c <NUM_CONNECTIONS> tcp://<SERVER_IP>:1883
 ```
 
 ## Note and references
 - Bulk traffic: iperf to iperf
 - VoD and Live Streaming traffic: srs-bench to nginx+rtmp module ([guide](https://docs.peer5.com/guides/setting-up-hls-live-streaming-server-using-nginx/)), nginx [rtmp module](https://github.com/sergey-dryabzhinsky/nginx-rtmp-module) and [srs-bench](https://github.com/ossrs/srs-bench) as client ([guide](https://hardelm.github.io/2017/07/11/srs-bench%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8))
-- IoT data: [mqtt-stresser](https://github.com/inovex/mqtt-stresser) to [mosquitto](https://github.com/eclipse/mosquitto)
-- VoIP traffic: Use [callgen323](https://github.com/willamowius/callgen323)
+- IoT data: [emqtt-bench](https://github.com/emqx/emqtt-bench) or [mqtt-stresser](https://github.com/inovex/mqtt-stresser) to [mosquitto](https://github.com/eclipse/mosquitto)
+- VoIP traffic: Use iperf with [guide](http://wiki.innovaphone.com/index.php?title=Howto:Network_VoIP_Readiness_Test)
 
 
