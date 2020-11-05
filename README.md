@@ -1,14 +1,14 @@
 # traffic-gen
-Generate various type of traffic (VOD, live streaming, IoT, video call, etc.)
-
+Traffic-gen can be used to deploy various services (VOD, live streaming, IoT, web, video call, etc) and generate traffic to that services.
 ## Run
 Firstly, user should have a `client` and a `server` with docker installed. To install docker:
 ```bash
 sh -c "$(wget -O- https://get.docker.com)"
 ```
-User does not need to clone this repo, just run the bellow command(s) depend on the type of traffic needed.
+User does not need to clone this repo, just run the bellow command(s) depend on the type of traffic needed. If user only need to deploy service without generating traffic, just run the command on server side only.
+
 ### Web traffic
-[wrk2](https://github.com/giltene/wrk2) as the web client and nginx as web server
+[wrk2](https://github.com/giltene/wrk2) as the web client and nginx as web server. Webserver serves basic nginx welcome page.
 ```bash
 # Web Server
 docker run -it --init --rm --network=host --name=tg-nginx dpnm/tg-nginx
@@ -20,7 +20,7 @@ docker run dpnm/tg-wrk2 --help
 ```
 
 ### VoD traffic
-[srs-bench](https://github.com/ossrs/srs-bench) as client and nginx [rtmp module](https://github.com/sergey-dryabzhinsky/nginx-rtmp-module) as the VoD server.
+[srs-bench](https://github.com/ossrs/srs-bench) as client and nginx [rtmp module](https://github.com/sergey-dryabzhinsky/nginx-rtmp-module) as the VoD server. VoD server serves BigBugBunny video at endpoint `/vod/bbb.mp4`.
 ```bash
 # VoD Server
 docker run -it --init --rm --network=host --name=tg-nginx dpnm/tg-nginx
@@ -76,6 +76,3 @@ docker run dpnm/tg-iperf --help
 ```
 ## References
 - VoD and Live Streaming traffic [setup guide](https://docs.peer5.com/guides/setting-up-hls-live-streaming-server-using-nginx/) and [srs-bench guide](https://hardelm.github.io/2017/07/11/srs-bench%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8)
-
-
-
