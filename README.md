@@ -1,6 +1,7 @@
 # traffic-gen
 Traffic-gen can be used to deploy various services (VOD, live streaming, IoT, web, video call, etc) and generate traffic to that services.
-## Run
+
+### Run
 Firstly, user should have a `client` and a `server` with docker installed. To install docker:
 ```bash
 sh -c "$(wget -O- https://get.docker.com)"
